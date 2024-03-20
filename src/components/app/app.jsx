@@ -17,8 +17,6 @@ const App = () => {
         setState({burgerMockIngredients: burgerMockIngredients})
     }, []);
 
-    console.log(state.burgerMockIngredients)
-
     return (
         <div className={appStyles.App}>
             <AppHeader/>
