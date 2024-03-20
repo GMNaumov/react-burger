@@ -1,0 +1,54 @@
+.header {
+    display: flex;
+    margin-bottom: 40px;
+    width: 100%;
+    min-height: 88px;
+    background-color: #1c1c21;
+    align-items: center;
+    justify-content: center;
+}
+
+.component {
+    display: flex;
+    align-items: center;
+}
+
+.text {
+    margin-left: 9px;
+    color: #fff;
+}
+
+.text_type_account {
+    color: #8585ad;
+    margin-left: 7px;
+}
+
+.text_type_orders {
+    color: #8585ad;
+    margin-left: 9px;
+}
+
+.constructor {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    margin-right: 48px;
+    margin-left: 13px;
+}
+
+.orders {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+}
+
+.account {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    margin-right: 309px;
+    margin-left: 130px;
+}
