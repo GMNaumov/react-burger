@@ -6,13 +6,16 @@ import {
 } from "@ya.praktikum/react-developer-burger-ui-components";
 
 import burgerIngredientCardStyles from "./burger-ingredient-card.module.css";
+import {burgerIngredientsType} from "../../utils/data";
 
-const BurgerIngredientCard = (burgerIngredient) => {
+const burgerIngredientCardAltImage = "Изображение ингредиента космического бургера.";
+
+const BurgerIngredientCard = ({burgerIngredient}) => {
     return (
         <div className={burgerIngredientCardStyles.container}>
             <div className={`${burgerIngredientCardStyles.wrapper} pt-6`}>
                 <div>
-                    <img src={burgerIngredient.image} alt={"На этом месте могла быть реклама. Или что-то вкусное"}/>
+                    <img src={burgerIngredient.image} alt={burgerIngredientCardAltImage}/>
                 </div>
                 <div className={burgerIngredientCardStyles.inner}>
                     <span>{burgerIngredient.price}</span>
@@ -23,6 +26,10 @@ const BurgerIngredientCard = (burgerIngredient) => {
             <Counter className={burgerIngredientCardStyles.counter} count={1}/>
         </div>
     );
+}
+
+BurgerIngredientCard.propTypes = {
+    burgerIngredient: burgerIngredientsType
 }
 
 export default BurgerIngredientCard;

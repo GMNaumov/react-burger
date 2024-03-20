@@ -8,19 +8,14 @@ import {burgerIngredientsType} from "../../utils/data";
 
 const BurgerIngredientsCategory = ({title, burgerIngredientsCategory}) => {
     return (
-        <div className="pt-10">
+        <section className="pt-10">
             <h1 className={burgerIngredientCardStyles.title}>{title}</h1>
             <div className={burgerIngredientCardStyles.ingredientCard}>
                 {burgerIngredientsCategory.map((burgerIngredient) => (
-                    <BurgerIngredientCard
-                        key={burgerIngredient._id}
-                        name={burgerIngredient.name}
-                        image={burgerIngredient.image}
-                        price={burgerIngredient.price}
-                    />
+                    <BurgerIngredientCard burgerIngredient={burgerIngredient} key={burgerIngredient._id}/>
                 ))}
             </div>
-        </div>
+        </section>
     );
 }
 

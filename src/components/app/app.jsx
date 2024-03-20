@@ -10,20 +10,22 @@ import {burgerMockIngredients} from "../../utils/data";
 
 const App = () => {
     const [state, setState] = useState({
-        burgerMockIngredients: []
+        burgerMockIngredients: burgerMockIngredients
     });
 
     useEffect(() => {
         setState({burgerMockIngredients: burgerMockIngredients})
     }, []);
 
+    console.log(state.burgerMockIngredients)
+
     return (
         <div className={appStyles.App}>
             <AppHeader/>
-            <div className={appStyles.Body}>
+            <main className={appStyles.Body}>
                 <BurgerIngredients burgerIngredients={state.burgerMockIngredients}/>
                 <BurgerConstructor burgerComponents={state.burgerMockIngredients}/>
-            </div>
+            </main>
         </div>
     );
 }

@@ -1,19 +1,21 @@
 import PropTypes from "prop-types";
 
 import {ConstructorElement} from "@ya.praktikum/react-developer-burger-ui-components";
+import {burgerIngredientsType} from "../../utils/data";
 
-const BurgerConstructorComponentElement = ({type, isLocked}) => {
+const BurgerConstructorComponentElement = ({burgerComponent, type, isLocked}) => {
     return <ConstructorElement
+        text={type === "top" ? burgerComponent.name.concat("\n(верх)") : burgerComponent.name.concat("\n(низ)")}
         type={type}
+        thumbnail={burgerComponent.image}
+        price={burgerComponent.price}
         isLocked={isLocked}
-        text={"Краторная булка N-200i"}
-        thumbnail={"https://code.s3.yandex.net/react/code/bun-02.png"}
-        price={1255}
     />
 }
 
 BurgerConstructorComponentElement.propTypes = {
-    type: PropTypes.string,
+    burgerComponent: burgerIngredientsType,
+    type: PropTypes.oneOf(["top", "bottom"]),
     isLocked: PropTypes.bool
 }
 

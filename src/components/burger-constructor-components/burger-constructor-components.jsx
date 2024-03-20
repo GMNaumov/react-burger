@@ -14,16 +14,14 @@ import {burgerIngredientsType} from '../../utils/data';
 const BurgerConstructorComponents = ({burgerComponents}) => {
     return (
         <div className={`${burgerConstructorComponentsStyles.cardsContainer} custom-scroll`}>
-            {burgerComponents
-                .filter((component) => component.type !== "bun")
-                .map((component) => (
-                    <BurgerConstructorComponentCard key={component._id}>
+            {burgerComponents.map((burgerComponent) => (
+                    <BurgerConstructorComponentCard key={burgerComponent._id}>
                         <DragIcon type="primary"/>
                         <ConstructorElement
-                            key={component._id}
-                            thumbnail={component.image}
-                            text={component.name}
-                            price={component.price}
+                            key={burgerComponent._id}
+                            thumbnail={burgerComponent.image}
+                            text={burgerComponent.name}
+                            price={burgerComponent.price}
                         />
                     </BurgerConstructorComponentCard>
                 ))}

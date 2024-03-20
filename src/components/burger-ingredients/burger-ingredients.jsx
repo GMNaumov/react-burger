@@ -9,20 +9,20 @@ import styles from "./burger-ingredients.module.css";
 import {burgerIngredientsType} from "../../utils/data";
 
 const BurgerIngredients = ({burgerIngredients}) => {
-    const buns = burgerIngredients.filter((ingredient) => ingredient.type = "bun");
-    const mains = burgerIngredients.filter((ingredient) => ingredient.type = "main");
-    const sauces = burgerIngredients.filter((ingredient) => ingredient.type = "sauce");
+    const buns = burgerIngredients.filter((ingredient) => ingredient.type === "bun");
+    const mains = burgerIngredients.filter((ingredient) => ingredient.type === "main");
+    const sauces = burgerIngredients.filter((ingredient) => ingredient.type === "sauce");
 
     return (
-        <div className={styles.wrapper}>
+        <article className={styles.wrapper}>
             <h1 className={`${styles.title} pt-10`}>Соберите бургер</h1>
             <BurgerIngredientsTabs/>
-            <div className={`${styles.ingredientCard} custom-scroll`}>
+            <section className={`${styles.ingredientCard} custom-scroll`}>
                 <BurgerIngredientsCategory title={"Булки"} burgerIngredientsCategory={buns}/>
                 <BurgerIngredientsCategory title={"Соусы"} burgerIngredientsCategory={sauces}/>
                 <BurgerIngredientsCategory title={"Начинки"} burgerIngredientsCategory={mains}/>
-            </div>
-        </div>
+            </section>
+        </article>
     );
 }
 
