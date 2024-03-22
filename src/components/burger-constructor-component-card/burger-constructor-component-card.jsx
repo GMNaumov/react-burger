@@ -8,10 +8,10 @@ const BurgerConstructorComponentCard = ({children}) => {
             {children}
         </div>
     );
-}
+};
 
 BurgerConstructorComponentCard.propTypes = {
     children: PropTypes.arrayOf(PropTypes.element).isRequired
-}
+};
 
 export default BurgerConstructorComponentCard;

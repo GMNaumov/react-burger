@@ -1,10 +1,10 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState} from "react";
 
 import AppHeader from "../app-header/app-header";
 import BurgerIngredients from "../burger-ingredients/burger-ingredients";
 import BurgerConstructor from "../burger-constructor/burger-constructor";
 
-import appStyles from './app.module.css';
+import appStyles from "./app.module.css";
 
 import {burgerIngredientsBackendAPI} from "../../utils/data";
 
@@ -18,7 +18,7 @@ const App = () => {
         fetch(burgerIngredientsBackendAPI)
             .then((response) => response.ok ? response.json() : response.json().then((error) => Promise.reject(error)))
             .then((json) => setState({burgerIngredientsData: json.data, isLoaded: json.success}))
-            .catch(error => console.log("Data loading error: ", error));
+            .catch(error => console.error("Data loading error: ", error));
     }, []);
 
     return (
@@ -30,6 +30,6 @@ const App = () => {
             </main>
         </div>
     );
-}
+};
 
 export default App;

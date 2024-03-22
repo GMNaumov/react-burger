@@ -17,7 +17,7 @@ const BurgerIngredientsCategory = ({title, burgerIngredientsCategory}) => {
             </div>
         </section>
     );
-}
+};
 
 BurgerIngredientsCategory.propTypes = {
     title: PropTypes.string.isRequired,

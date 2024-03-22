@@ -1,7 +1,7 @@
-import burgerIngredientCardDetailsStyle from "./burger-ingredient-card-details.module.css";
+import burgerIngredientCardDetailsStyle from "./ingredient-details.module.css";
 import {burgerIngredientsType} from "../../utils/data";
 
-const BurgerIngredientCardDetails = ({burgerIngredient}) => {
+const IngredientDetails = ({burgerIngredient}) => {
     return (
         <div className={`${burgerIngredientCardDetailsStyle.wrapper} mt-4`}>
             <div>
@@ -35,11 +35,11 @@ const BurgerIngredientCardDetails = ({burgerIngredient}) => {
                 </div>
             </div>
         </div>
-    )
-}
+    );
+};
 
-BurgerIngredientCardDetails.propTypes = {
+IngredientDetails.propTypes = {
     burgerIngredient: burgerIngredientsType
-}
+};
 
-export default BurgerIngredientCardDetails;
+export default IngredientDetails;

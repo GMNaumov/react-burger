@@ -7,9 +7,10 @@ import Modal from "../modal/modal";
 
 import burgerConstructorAmountStyle from "./burger-constructor-amount.module.css";
 import OrderDetails from "../order-details/order-details";
+import {UseModal} from "../../hooks/use-modal/use-modal";
 
 const BurgerConstructorAmount = ({text, icon}) => {
-    const [isModalWindowOpen, setIsModalWindowOpen] = React.useState(false);
+    const {isModalOpen, openModal, closeModal} = UseModal();
 
     return (
         <div className={`${burgerConstructorAmountStyle.wrapper} pt-10 mr-10`}>
@@ -17,17 +18,17 @@ const BurgerConstructorAmount = ({text, icon}) => {
                 <span className={"text text_type_digits-medium"}>{text}</span>
                 <span className={`${burgerConstructorAmountStyle.icon}`}>{icon}</span>
             </div>
-            <Button htmlType="button" type="primary" size="large" onClick={() => setIsModalWindowOpen(true)}>
+            <Button htmlType="button" type="primary" size="large" onClick={openModal}>
                 Оформить заказ
             </Button>
             {
-                isModalWindowOpen && <Modal setIsModalWindowOpen={() => setIsModalWindowOpen(false)}>
+                isModalOpen && <Modal onClose={closeModal}>
                     <OrderDetails orderID={"123456"}/>
                 </Modal>
             }
         </div>
-    )
-}
+    );
+};
 
 BurgerConstructorAmount.propTypes = {
     text: PropTypes.string.isRequired,

@@ -1,15 +1,15 @@
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
 import {
     ConstructorElement,
     DragIcon
-} from '@ya.praktikum/react-developer-burger-ui-components';
+} from "@ya.praktikum/react-developer-burger-ui-components";
 
 import BurgerConstructorComponentCard from "../burger-constructor-component-card/burger-constructor-component-card";
 
-import burgerConstructorComponentsStyles from './burger-constructor-components.module.css';
+import burgerConstructorComponentsStyles from "./burger-constructor-components.module.css";
 
-import {burgerIngredientsType} from '../../utils/data';
+import {burgerIngredientsType} from "../../utils/data";
 
 const BurgerConstructorComponents = ({burgerComponents}) => {
     return (
@@ -26,11 +26,11 @@ const BurgerConstructorComponents = ({burgerComponents}) => {
                     </BurgerConstructorComponentCard>
                 ))}
         </div>
-    )
-}
+    );
+};
 
 BurgerConstructorComponents.propTypes = {
     burgerComponents: PropTypes.arrayOf(burgerIngredientsType).isRequired
-}
+};
 
 export default BurgerConstructorComponents;

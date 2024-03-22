@@ -1,10 +1,10 @@
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
-import burgerConstructorStyles from './burger-constructor.module.css';
+import burgerConstructorStyles from "./burger-constructor.module.css";
 
 import {
     CurrencyIcon
-} from '@ya.praktikum/react-developer-burger-ui-components';
+} from "@ya.praktikum/react-developer-burger-ui-components";
 
 import {burgerIngredientsType} from "../../utils/data";
 import BurgerConstructorAmount from "../burger-constructor-amount/burger-constructor-amount";
@@ -23,13 +23,10 @@ const BurgerConstructor = ({burgerComponents}) => {
                 {notBuns && (<BurgerConstructorComponents burgerComponents={notBuns}/>)}
                 {bun && (<BurgerConstructorComponentElement burgerComponent={bun} type={"bottom"} isLocked={true}/>)}
             </section>
-            <BurgerConstructorAmount
-                text="100500"
-                icon={<CurrencyIcon type="primary"/>}
-            />
+            <BurgerConstructorAmount text="100500" icon={<CurrencyIcon type="primary"/>}/>
         </article>
-    )
-}
+    );
+};
 
 BurgerConstructor.propTypes = {
     burgerComponents: PropTypes.arrayOf(burgerIngredientsType).isRequired

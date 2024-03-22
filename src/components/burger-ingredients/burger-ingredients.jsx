@@ -24,7 +24,7 @@ const BurgerIngredients = ({burgerIngredients}) => {
             </section>
         </article>
     );
-}
+};
 
 BurgerIngredients.propTypes = {
     burgerIngredients: PropTypes.arrayOf(burgerIngredientsType).isRequired

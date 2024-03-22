@@ -7,11 +7,11 @@ import ModalOverlay from "../modal-overlay/modal-overlay";
 
 import modalStyles from "./modal.module.css";
 
-const Modal = ({setIsModalWindowOpen, title, children}) => {
+const Modal = ({onClose, title, children}) => {
     React.useEffect(() => {
         const handlePressEscape = event => {
-            if (event.key === 'Escape') {
-                setIsModalWindowOpen();
+            if (event.key === "Escape") {
+                onClose();
             }
         };
 
@@ -20,23 +20,24 @@ const Modal = ({setIsModalWindowOpen, title, children}) => {
         return () => {
             document.removeEventListener("keydown", handlePressEscape);
         };
-    }, [setIsModalWindowOpen]);
+    }, [onClose]);
 
     return createPortal(
-        <>
-            <ModalOverlay setIsModalWindowOpen={setIsModalWindowOpen}/>
+        <div>
+            <ModalOverlay onClose={onClose}/>
             <div className={modalStyles.window}>
                 <div className={modalStyles.header}>
                     <p className={"text text_type_main-large"}>{title}</p>
-                    <CloseIcon onClick={setIsModalWindowOpen} className={modalStyles.closeIcon} type={"primary"}/>
+                    <CloseIcon onClick={onClose} className={modalStyles.closeIcon} type={"primary"}/>
                 </div>
                 {children}
             </div>
-        </>, document.getElementById('app-modal'));
-}
+        </div>, document.getElementById("app-modal")
+    );
+};
 
 Modal.propTypes = {
-    setIsModalWindowOpen: PropTypes.func.isRequired,
+    onClose: PropTypes.func.isRequired,
     title: PropTypes.string,
     children: PropTypes.object.isRequired
 };

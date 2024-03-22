@@ -15,7 +15,7 @@ const BurgerIngredientsTabs = () => {
             <Tab value="Начинки" active={current === "Начинки"} onClick={setCurrent}>Начинки</Tab>
         </nav>
     );
-}
+};
 
 
 export default BurgerIngredientsTabs;

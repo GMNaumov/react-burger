@@ -10,16 +10,17 @@ import Modal from "../modal/modal";
 import burgerIngredientCardStyles from "./burger-ingredient-card.module.css";
 
 import {burgerIngredientsType} from "../../utils/data";
-import BurgerIngredientCardDetails from "../burger-ingredient-card-details/burger-ingredient-card-details";
+import IngredientDetails from "../ingredient-details/ingredient-details";
+import {UseModal} from "../../hooks/use-modal/use-modal";
 
 
 const BurgerIngredientCard = ({burgerIngredient}) => {
-    const [isModalWindowOpen, setIsModalWindowOpen] = React.useState(false);
+    const {isModalOpen, openModal, closeModal} = UseModal();
 
     return (
-        <>
+        <div>
             <div className={burgerIngredientCardStyles.container}>
-                <div className={`${burgerIngredientCardStyles.wrapper} pt-6`} onClick={() => setIsModalWindowOpen(true)}>
+                <div className={`${burgerIngredientCardStyles.wrapper} pt-6`} onClick={openModal}>
                     <div>
                         <img src={burgerIngredient.image} alt={burgerIngredient.name}/>
                     </div>
@@ -32,16 +33,15 @@ const BurgerIngredientCard = ({burgerIngredient}) => {
                 <Counter className={burgerIngredientCardStyles.counter} count={1}/>
             </div>
             {
-                isModalWindowOpen && <Modal
-                    setIsModalWindowOpen={() => setIsModalWindowOpen(false)}
+                isModalOpen && <Modal
+                    onClose={closeModal}
                     title={"Детали ингридиента"}>
-                    <BurgerIngredientCardDetails burgerIngredient={burgerIngredient}/>
+                    <IngredientDetails burgerIngredient={burgerIngredient}/>
                 </Modal>
             }
-        </>
-
+        </div>
     );
-}
+};
 
 BurgerIngredientCard.propTypes = {
     burgerIngredient: burgerIngredientsType
