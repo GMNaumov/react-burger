@@ -1,17 +1,22 @@
 .wrapper {
-  max-width: 600px;
+    max-width: 600px;
 }
 
 .title {
-  text-align: start;
-  font-weight: 700;
-  font-size: 36px;
-  margin: 0;
+    text-align: start;
+    font-weight: 700;
+    font-size: 36px;
+    margin: 0;
 }
 
-.ingredientCard {
-  max-width: 100%;
-  max-height: 500px;
-  overflow: hidden;
-  overflow-y: scroll;
+.tabs {
+    display: flex;
+    justify-content: center;
+}
+
+.cardsContainer {
+    max-width: 100%;
+    max-height: 500px;
+    overflow: hidden;
+    overflow-y: scroll;
 }

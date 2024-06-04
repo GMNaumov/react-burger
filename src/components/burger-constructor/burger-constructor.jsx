@@ -1,35 +1,76 @@
-import PropTypes from "prop-types";
-
 import burgerConstructorStyles from "./burger-constructor.module.css";
 
 import {
-    CurrencyIcon
+    CurrencyIcon,
+    ConstructorElement
 } from "@ya.praktikum/react-developer-burger-ui-components";
 
-import {burgerIngredientsType} from "../../utils/data";
-import BurgerConstructorAmount from "../burger-constructor-amount/burger-constructor-amount";
-import BurgerConstructorComponents from "../burger-constructor-components/burger-constructor-components";
-import BurgerConstructorComponentElement
-    from "../burger-constructor-component-element/burger-constructor-component-element";
+import { useDrop } from "react-dnd";
+import { useDispatch, useSelector } from "react-redux";
 
-const BurgerConstructor = ({burgerComponents}) => {
-    const bun = burgerComponents.find(ingredient => ingredient.type === "bun");
-    const notBuns = burgerComponents.filter(ingredient => ingredient.type !== "bun");
+import BurgerConstructorPlug from "../burger-constructor-plug/burger-constructor-plug";
+import BurgerConstructorList from "../burger-constructor-list/burger-constructor-list";
+import BurgerConstructorAmount from "../burger-constructor-amount/burger-constructor-amount";
+
+import {
+    ADD_BURGER_COMPONENT,
+    ADD_BUN,
+    COUNT_TOTAL_AMOUNT
+} from "../../services/actions/burger-constructor";
+
+
+const BurgerConstructor = () => {
+    const { bun, burgerComponents, totalPrice } = useSelector(state => state.burgerConstructor);
+
+    const dispatch = useDispatch();
+
+    const [, dropTarget] = useDrop({
+        accept: "burgerIngredient",
+        drop: ({ burgerIngredient }) => {
+            if (burgerIngredient.type === "bun") {
+                dispatch({ type: ADD_BUN, burgerIngredient });
+            } else {
+                dispatch({ type: ADD_BURGER_COMPONENT, burgerIngredient });
+            }
+            dispatch({ type: COUNT_TOTAL_AMOUNT, burgerIngredient });
+        }
+    });
 
     return (
-        <article className={`${burgerConstructorStyles.wrapper} mt-25`}>
-            <section className={`${burgerConstructorStyles.ingredientCard} custom-scroll`}>
-                {bun && (<BurgerConstructorComponentElement burgerComponent={bun} type={"top"} isLocked={true}/>)}
-                {notBuns && (<BurgerConstructorComponents burgerComponents={notBuns}/>)}
-                {bun && (<BurgerConstructorComponentElement burgerComponent={bun} type={"bottom"} isLocked={true}/>)}
-            </section>
-            <BurgerConstructorAmount text="100500" icon={<CurrencyIcon type="primary"/>}/>
-        </article>
-    );
-};
+        <div className={`${burgerConstructorStyles.wrapper} mt-25`} ref={dropTarget}>
+            <div className={`${burgerConstructorStyles.cardsContainer} custom-scroll`}>
+                {!bun ? (
+                    <BurgerConstructorPlug text="Верхняя булка" position="top" />
+                ) : (
+                    < ConstructorElement
+                        type="top"
+                        isLocked={true}
+                        text={`${bun.name} (верх)`}
+                        price={bun.price}
+                        thumbnail={`${bun.image}`}
+                    />
+                )}
+                {burgerComponents.length === 0 ? (
+                    <BurgerConstructorPlug text="Начинки" position="middle" />
+                ) : (
+                    <BurgerConstructorList ingridients={burgerComponents} />
+                )}
 
-BurgerConstructor.propTypes = {
-    burgerComponents: PropTypes.arrayOf(burgerIngredientsType).isRequired
-};
+                {!bun ? (
+                    <BurgerConstructorPlug text="Нижняя булка" position="bottom" />
+                ) : (
+                    <ConstructorElement
+                        type="bottom"
+                        isLocked={true}
+                        text={`${bun.name} (низ)`}
+                        price={bun.price}
+                        thumbnail={`${bun.image}`}
+                    />
+                )}
+            </div>
+            <BurgerConstructorAmount text={`${totalPrice}`} icon={<CurrencyIcon type="primary" />}/>
+        </div >
+    )
+}
 
 export default BurgerConstructor;

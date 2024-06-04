@@ -1,44 +1,50 @@
 import React from "react";
-import {createPortal} from "react-dom";
-import PropTypes from "prop-types";
+import ReactDOM from "react-dom";
+import styles from "./modal.module.css";
 
-import {CloseIcon} from "@ya.praktikum/react-developer-burger-ui-components";
+import { CloseIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import ModalOverlay from "../modal-overlay/modal-overlay";
 
-import modalStyles from "./modal.module.css";
+import PropTypes from "prop-types";
 
-const Modal = ({onClose, title, children}) => {
+
+const modalRoot = document.getElementById("react-modals");
+
+
+const Modal = ({ setIsOpenModal, title, children }) => {
+
     React.useEffect(() => {
-        const handlePressEscape = event => {
-            if (event.key === "Escape") {
-                onClose();
-            }
+        const handleEsc = (e) => {
+            e.key === "Escape" && setIsOpenModal();
         };
 
-        document.addEventListener("keydown", handlePressEscape);
-
+        document.addEventListener("keydown", handleEsc);
         return () => {
-            document.removeEventListener("keydown", handlePressEscape);
+            document.removeEventListener("keydown", handleEsc);
         };
-    }, [onClose]);
+    }, [setIsOpenModal]);
 
-    return createPortal(
-        <div>
-            <ModalOverlay onClose={onClose}/>
-            <div className={modalStyles.window}>
-                <div className={modalStyles.header}>
-                    <p className={"text text_type_main-large"}>{title}</p>
-                    <CloseIcon onClick={onClose} className={modalStyles.closeIcon} type={"primary"}/>
+    return ReactDOM.createPortal(
+        <>
+            <div className={styles.window} >
+                <div className={styles.header}>
+                    <p className={styles.text}>{title}</p>
+                    <CloseIcon
+                        onClick={setIsOpenModal}
+                        styles={{ width: '18px', height: '18px' }}
+                    />
                 </div>
                 {children}
             </div>
-        </div>, document.getElementById("app-modal")
-    );
-};
+            <ModalOverlay setIsOpenModal={setIsOpenModal} />
+        </>,
+        modalRoot);
+}
+
 
 Modal.propTypes = {
-    onClose: PropTypes.func.isRequired,
     title: PropTypes.string,
+    setIsOpenModal: PropTypes.func.isRequired,
     children: PropTypes.object.isRequired
 };
 

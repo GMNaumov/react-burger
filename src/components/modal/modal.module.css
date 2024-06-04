@@ -15,7 +15,6 @@
     justify-content: space-between;
 }
 
-.closeIcon {
-    width: 18px;
-    height: 18px;
+.text {
+    font-size: 36px;
 }

@@ -3,36 +3,43 @@ import React from "react";
 import {
     BurgerIcon,
     ListIcon,
-    Logo,
     ProfileIcon,
+    Logo
 } from "@ya.praktikum/react-developer-burger-ui-components";
 
 import appHeaderStyle from "./app-header.module.css";
 
-import {temporaryUrl} from "../../utils/data"
+import AppHeaderItem from "../app-header-item/app-header-item";
 
-const AppHeader = () => {
+
+function AppHeader() {
+    const [active, setActive] = React.useState("Конструктор");
+
     return (
-        <header>
-            <nav className={appHeaderStyle.header}>
-                <a href={temporaryUrl} className={appHeaderStyle.constructor}>
-                    <BurgerIcon type="primary"/>
-                    <p className={appHeaderStyle.text}>Конструктор</p>
-                </a>
-                <a href={temporaryUrl} className={appHeaderStyle.orders}>
-                    <ListIcon type="secondary"/>
-                    <p className={appHeaderStyle.text_type_orders}>Лента заказов</p>
-                </a>
+        <div className={appHeaderStyle.header}>
+            <div className={appHeaderStyle.wrapper}>
+                <AppHeaderItem
+                    onClick={() => setActive("Конструктор")}
+                    isActive={active === "Конструктор"}
+                    text="Конструктор"
+                    icon={<BurgerIcon/>}/>
+                <AppHeaderItem
+                    onClick={() => setActive("Лента Заказов")}
+                    isActive={active === "Лента Заказов"}
+                    text="Лента Заказов"
+                    icon={<ListIcon/>}/>
                 <div className={appHeaderStyle.logo}>
                     <Logo/>
                 </div>
-                <a href={temporaryUrl} className={appHeaderStyle.account}>
-                    <ProfileIcon type="secondary"/>
-                    <p className={appHeaderStyle.text_type_account}>Личный кабинет</p>
-                </a>
-            </nav>
-        </header>
+                <AppHeaderItem
+                    onClick={() => setActive("Личный кабинет")}
+                    isActive={active === "Личный кабинет"}
+                    text="Личный кабинет"
+                    icon={<ProfileIcon/>}/>
+            </div>
+        </div>
     );
-};
+}
+
 
 export default AppHeader;

@@ -1,35 +1,39 @@
-import React, {useEffect, useState} from "react";
+import {useEffect} from "react";
+import {DndProvider} from "react-dnd";
+import {useSelector, useDispatch} from "react-redux";
+import {HTML5Backend} from "react-dnd-html5-backend";
 
 import AppHeader from "../app-header/app-header";
 import BurgerIngredients from "../burger-ingredients/burger-ingredients";
 import BurgerConstructor from "../burger-constructor/burger-constructor";
 
+import {getIngredients} from "../../services/actions/burger-ingredients";
+
 import appStyles from "./app.module.css";
 
-import {burgerIngredientsBackendAPI} from "../../utils/data";
-
 const App = () => {
-    const [state, setState] = useState({
-        burgerIngredientsData: [],
-        isLoaded: false,
-    });
+    const dispatch = useDispatch();
+    const {burgerIngredients: ingredients, isLoading} = useSelector(store => store.burgerIngredients);
 
     useEffect(() => {
-        fetch(burgerIngredientsBackendAPI)
-            .then((response) => response.ok ? response.json() : response.json().then((error) => Promise.reject(error)))
-            .then((json) => setState({burgerIngredientsData: json.data, isLoaded: json.success}))
-            .catch(error => console.error("Data loading error: ", error));
-    }, []);
+        dispatch(getIngredients())
+    }, [dispatch]);
+
 
     return (
         <div className={appStyles.App}>
             <AppHeader/>
-            <main className={appStyles.Body}>
-                <BurgerIngredients burgerIngredients={state.burgerIngredientsData}/>
-                <BurgerConstructor burgerComponents={state.burgerIngredientsData}/>
-            </main>
+            {isLoading ? (<h1>Пожайлуста, подождите ...</h1>
+            ) : (
+                <main className={appStyles.Body}>
+                    <DndProvider backend={HTML5Backend}>
+                        <BurgerIngredients ingredients={ingredients}/>
+                        <BurgerConstructor/>
+                    </DndProvider>
+                </main>
+            )}
         </div>
     );
-};
+}
 
 export default App;
