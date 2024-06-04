@@ -1,0 +1,6 @@
+
+ˆjavascript:S6754":useState call is not destructured into value + setter pair(èˆğşÿÿÿÿ8ö“»¢ş1J$75d1f0fc-6ced-459a-9f92-6a44519a964f
+’javascript:S3358"DExtract this nested ternary operation into an independent statement.(íÛàıúÿÿÿÿ8äüğÓé1J$9573442d-7b5f-4497-8fa5-da8e0da9a09b
+‘javascript:S68488"ÂAvoid non-native interactive elements. If using native HTML is not possible, add an appropriate role and support for tabbing, mouse, keyboard, and touch inputs to an interactive content element.(¯ƒúÁøÿÿÿÿ8ö“»¢ş1J$cfdd6a80-f968-4bc8-8d54-b3ee816c7052
+­javascript:S10828"_Visible, non-interactive elements with click handlers must have at least one keyboard listener.(¯ƒúÁøÿÿÿÿ8ö“»¢ş1J$4e48d632-64e2-4263-832f-408b76bd7f63
+©javascript:S6748L"[Do not pass children as props. Instead, nest children between the opening and closing tags.(–Ñ–Şÿÿÿÿÿ8ö“»¢ş1J$6d561639-ccb9-4324-84c3-4420ad512488

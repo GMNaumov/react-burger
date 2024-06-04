@@ -1,0 +1,3 @@
+
+Dtypescript:S1874"'createStore' is deprecated.(…¯â¼ûÿÿÿÿ8‘Ç¢ş1
+átypescript:S1874"’The signature '(reducer: Reducer<CombinedState<{ currentIngredient: { currentIngredient: any; }; burgerIngredients: { isLoading: boolean; success: boolean; burgerIngredients: any; }; burgerConstructor: never; orderDetails: { isLoading: boolean; name: any; order: { ...; }; success: boolean; }; }>, any>, enhancer?: StoreEnhancer<...> | undefined): Store<...> & { ...; }' of 'createStore' is deprecated.(¢é»øÿÿÿÿ8ëôä¦é1J$575f8544-b4c0-4da0-9d41-5fb839dbf5f0
