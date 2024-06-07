@@ -4,13 +4,13 @@ import PropTypes from "prop-types";
 import burgerIngredientsType from "../../utils/data";
 
 import BurgerConstructorItem from "../burger-constructor-item/burger-constructor-item";
-import { ConstructorElement, DragIcon } from "@ya.praktikum/react-developer-burger-ui-components";
+import {ConstructorElement, DragIcon} from "@ya.praktikum/react-developer-burger-ui-components";
 
-import { REMOVE_BURGER_COMPONENT, COUNT_TOTAL_AMOUNT } from "../../services/actions/burger-constructor";
-import { useDispatch } from "react-redux";
+import {REMOVE_BURGER_COMPONENT, COUNT_TOTAL_AMOUNT} from "../../services/actions/burger-constructor";
+import {useDispatch} from "react-redux";
 
 
-const BurgerConstructorList = ({ ingridients }) => {
+const BurgerConstructorList = ({ingridients}) => {
     const filteredIngridients = React.useMemo(
         () => ingridients.filter((burgerIngredient) => burgerIngredient.type !== "bun")
         , [ingridients]);
@@ -19,8 +19,8 @@ const BurgerConstructorList = ({ ingridients }) => {
     const dispatch = useDispatch();
 
     const removeBurgerIngredient = (burgerIngredient) => {
-        dispatch({ type: REMOVE_BURGER_COMPONENT, burgerIngredient })
-        dispatch({ type: COUNT_TOTAL_AMOUNT, burgerIngredient })
+        dispatch({type: REMOVE_BURGER_COMPONENT, payload: {burgerIngredient, uniqid: burgerIngredient.uniqid}})
+        dispatch({type: COUNT_TOTAL_AMOUNT, payload: {burgerIngredient}})
     }
 
     return (
@@ -30,7 +30,7 @@ const BurgerConstructorList = ({ ingridients }) => {
                     <BurgerConstructorItem
                         key={burgerIngredient.uniqid}
                         index={index}>
-                        <DragIcon type="primary" />
+                        <DragIcon type="primary"/>
                         <ConstructorElement
                             handleClose={() => removeBurgerIngredient(burgerIngredient)}
                             type={burgerIngredient.type}

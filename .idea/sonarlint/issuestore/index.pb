@@ -7,3 +7,23 @@
 ,.idea/inspectionProfiles/Project_Default.xml,4\9\496a238a6afa168dbaf6efd37bb459331589579c
 S
 #.idea/sonarlint/issuestore/index.pb,9\f\9fe84ebb15faf917b7def6236dba604453cc61e0
+r
+Bsrc/components/ingredient-details-card/ingredient-details-card.jsx,1\a\1aeaf7c121bec8b30ff20c30c464677d1d974317
+p
+@src/components/burger-ingredient-card/burger-ingredient-card.jsx,0\1\01830947ee0d02945c7d92a776216ea41ba8968a
+r
+Bsrc/components/burger-constructor-list/burger-constructor-list.jsx,1\e\1e166c82be473977e3e994d85a94d2c7ebf303c8
+\
+,src/services/reducers/burger-constructor.jsx,2\2\22e6165f057b99a1832d6a5568dca2bdedeb6dbb
+[
++src/services/actions/burger-constructor.jsx,e\3\e366e256140fafb9f47fb629d595ab41ca6d3154
+h
+8src/components/burger-constructor/burger-constructor.jsx,9\9\9969e97ba8b49e95b3109d5a81519776a7f44db9
+O
+src/services/reducers/index.jsx,6\3\63f692e9c266836dc09b8ea712e6c4367791d877
+r
+Bsrc/components/burger-constructor-plug/burger-constructor-plug.jsx,e\a\ea934db07343c53c8ac2c18893e47ca878f8b828
+N
+src/components/modal/modal.jsx,3\2\326e413324d5cf914d3727a935bdd64309df5ea0
+^
+.src/components/modal-overlay/modal-overlay.jsx,1\9\19c1905576f021ae2e06a9996d1c0fe367a07cf8

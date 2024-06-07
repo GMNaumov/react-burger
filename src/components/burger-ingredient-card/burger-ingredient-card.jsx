@@ -62,7 +62,7 @@ const BurgerIngredientCard = (burgerIngredient) => {
 
                 >
                     <div ref={dragRef}>
-                        <img src={burgerIngredient.image} alt={burgerIngredient.name} />
+                        <img src={burgerIngredient.image} alt={burgerIngredient.name}/>
                     </div>
                     <div className={burgerIngredientCardStyles.inner}>
                         <span>{burgerIngredient.price}</span>
@@ -74,11 +74,11 @@ const BurgerIngredientCard = (burgerIngredient) => {
             </div>
             {
                 isModalOpen && <Modal children={burgerIngredient}
-                    setIsOpenModal={() => {
-                        setIsOpenModal(false);
-                        updateBurgerConstructorIngredients()
-                    }}
-                    title={"Детали ингридиента"}>
+                                      setIsOpenModal={() => {
+                                          setIsOpenModal(false);
+                                          updateBurgerConstructorIngredients()
+                                      }}
+                                      title={"Детали ингридиента"}>
                     <IngredientDetailsCard
                         _id={burgerIngredient._id}
                         name={burgerIngredient.name}

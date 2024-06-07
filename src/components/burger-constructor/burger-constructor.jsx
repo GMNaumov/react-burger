@@ -17,6 +17,7 @@ import {
     ADD_BUN,
     COUNT_TOTAL_AMOUNT
 } from "../../services/actions/burger-constructor";
+import uniqid from "uniqid";
 
 
 const BurgerConstructor = () => {
@@ -28,11 +29,11 @@ const BurgerConstructor = () => {
         accept: "burgerIngredient",
         drop: ({ burgerIngredient }) => {
             if (burgerIngredient.type === "bun") {
-                dispatch({ type: ADD_BUN, burgerIngredient });
+                dispatch({ type: ADD_BUN, payload: {burgerIngredient} });
             } else {
-                dispatch({ type: ADD_BURGER_COMPONENT, burgerIngredient });
+                dispatch({ type: ADD_BURGER_COMPONENT, payload: {burgerIngredient, uniqid: uniqid() } });
             }
-            dispatch({ type: COUNT_TOTAL_AMOUNT, burgerIngredient });
+            dispatch({ type: COUNT_TOTAL_AMOUNT, payload: {burgerIngredient} });
         }
     });
 

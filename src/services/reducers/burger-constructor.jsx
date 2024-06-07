@@ -6,7 +6,6 @@ import {
     SORT_BURGER_INGREDIENTS
 } from '../actions/burger-constructor';
 
-import uniqid from 'uniqid';
 
 const initialState = {
     bun: null,
@@ -15,20 +14,20 @@ const initialState = {
 }
 
 export const burgerConstructorReducer = (state = initialState, action) => {
-    const { type, ...rest } = action;
+    const { payload } = action;
 
     switch (action.type) {
         case ADD_BUN:
             return {
                 ...state,
-                bun: rest.burgerIngredient
+                bun: payload.burgerIngredient
             }
         case ADD_BURGER_COMPONENT: {
             return {
                 ...state,
                 burgerComponents: [
                     ...state.burgerComponents,
-                    { ...rest.burgerIngredient, uniqid: uniqid() }
+                    { ...payload.burgerIngredient, uniqid: payload.uniqid }
                 ]
             }
         }
@@ -36,7 +35,7 @@ export const burgerConstructorReducer = (state = initialState, action) => {
             return {
                 ...state,
                 burgerComponents: [...state.burgerComponents]
-                    .filter(burgerIngredient => burgerIngredient.uniqid !== rest.burgerIngredient.uniqid)
+                    .filter(burgerIngredient => burgerIngredient.uniqid !== payload.uniqid)
             }
         }
         case COUNT_TOTAL_AMOUNT: {
@@ -49,10 +48,10 @@ export const burgerConstructorReducer = (state = initialState, action) => {
         }
         case SORT_BURGER_INGREDIENTS: {
             const prevState = [...state.burgerComponents];
-            const item = prevState[rest.rest.from]
+            const item = prevState[payload.rest.from]
 
-            prevState.splice(rest.rest.from, 1)
-            prevState.splice(rest.rest.to, 0, item)
+            prevState.splice(payload.rest.from, 1)
+            prevState.splice(payload.rest.to, 0, item)
 
             return {
                 ...state,
