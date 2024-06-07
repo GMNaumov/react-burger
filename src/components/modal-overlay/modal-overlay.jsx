@@ -1,9 +1,9 @@
 import styles from "./modal-overlay.module.css";
 import PropTypes from "prop-types";
 
-const ModalOverlay = ({ setIsModalOpen }) => {
+const ModalOverlay = ({ setIsOpenModal }) => {
     return (
-        <div onClick={setIsModalOpen} className={styles.overlay}></div>
+        <div onClick={setIsOpenModal} className={styles.overlay}></div>
     );
 }
 
