@@ -27,3 +27,5 @@ N
 src/components/modal/modal.jsx,3\2\326e413324d5cf914d3727a935bdd64309df5ea0
 ^
 .src/components/modal-overlay/modal-overlay.jsx,1\9\19c1905576f021ae2e06a9996d1c0fe367a07cf8
+z
+Jsrc/components/burger-ingredients-category/burger-ingredients-category.jsx,8\7\87215a353f5ce9f55a9c93c894467b47f7813c20

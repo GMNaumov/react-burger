@@ -79,15 +79,7 @@ const BurgerIngredientCard = (burgerIngredient) => {
                                           updateBurgerConstructorIngredients()
                                       }}
                                       title={"Детали ингридиента"}>
-                    <IngredientDetailsCard
-                        _id={burgerIngredient._id}
-                        name={burgerIngredient.name}
-                        image_large={burgerIngredient.image_large}
-                        proteins={burgerIngredient.proteins}
-                        calories={burgerIngredient.calories}
-                        fat={burgerIngredient.fat}
-                        carbohydrates={burgerIngredient.carbohydrates}
-                    />
+                    <IngredientDetailsCard ingredient={burgerIngredient}/>
                 </Modal>
             }
         </>
