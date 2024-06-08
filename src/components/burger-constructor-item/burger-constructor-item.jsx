@@ -43,7 +43,7 @@ const BurgerConstructorItem = ({children, index}) => {
                 return;
             }
 
-            dispatch({type: SORT_BURGER_INGREDIENTS, rest: {from: dragIndex, to: hoverIndex}});
+            dispatch({type: SORT_BURGER_INGREDIENTS, payload: {from: dragIndex, to: hoverIndex}});
 
             item.index = hoverIndex;
         }

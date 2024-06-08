@@ -48,10 +48,10 @@ export const burgerConstructorReducer = (state = initialState, action) => {
         }
         case SORT_BURGER_INGREDIENTS: {
             const prevState = [...state.burgerComponents];
-            const item = prevState[payload.rest.from]
+            const item = prevState[payload.from]
 
-            prevState.splice(payload.rest.from, 1)
-            prevState.splice(payload.rest.to, 0, item)
+            prevState.splice(payload.from, 1)
+            prevState.splice(payload.to, 0, item)
 
             return {
                 ...state,

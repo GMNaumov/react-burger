@@ -29,3 +29,7 @@ N
 .src/components/modal-overlay/modal-overlay.jsx,1\9\19c1905576f021ae2e06a9996d1c0fe367a07cf8
 z
 Jsrc/components/burger-ingredients-category/burger-ingredients-category.jsx,8\7\87215a353f5ce9f55a9c93c894467b47f7813c20
+b
+2src/components/app-header-item/app-header-item.jsx,1\c\1c0a5b175461a63eeae1f049880eb5a3e8101d4b
+r
+Bsrc/components/burger-constructor-item/burger-constructor-item.jsx,3\0\30faffcd12cb8aaf9cba741f9a4a8c351e44ddaf
