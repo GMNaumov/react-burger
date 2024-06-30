@@ -1,18 +1,18 @@
 import styles from "./burger-constructor-item.module.css";
 import PropTypes from "prop-types";
-import {useRef} from "react";
-import {useDispatch} from "react-redux";
-import {useDrag, useDrop} from "react-dnd";
-import {SORT_BURGER_INGREDIENTS} from "../../services/actions/burger-constructor";
+import { useRef } from "react";
+import { useDispatch } from "react-redux";
+import { useDrag, useDrop} from "react-dnd";
+import { SORT_BURGER_INGREDIENTS } from "../../services/actions/burger-constructor"
 
 
-const BurgerConstructorItem = ({children, index}) => {
+const BurgerConstructorItem = ({ children, index }) => {
     const dispatch = useDispatch();
 
     const ref = useRef(null);
 
-    const [{handlerId}, drop] = useDrop({
-        accept: 'innerIngridient',
+    const [{ handlerId }, drop] = useDrop({
+        accept: "innerIngridient",
         collect(monitor) {
             return {
                 handlerId: monitor.getHandlerId()
@@ -43,16 +43,17 @@ const BurgerConstructorItem = ({children, index}) => {
                 return;
             }
 
-            dispatch({type: SORT_BURGER_INGREDIENTS, payload: {from: dragIndex, to: hoverIndex}});
+            dispatch({ type: SORT_BURGER_INGREDIENTS, rest: { from: dragIndex, to: hoverIndex } });
 
             item.index = hoverIndex;
         }
     });
 
-    const [{isDragging}, drag] = useDrag({
+    const [{ isDragging }, drag] = useDrag({
         type: "innerIngridient",
         item: () => {
-            return {index};
+            // Определяем элемент
+            return { index };
         },
         collect: (monitor) => ({
             isDragging: monitor.isDragging()
@@ -69,7 +70,8 @@ const BurgerConstructorItem = ({children, index}) => {
 }
 
 BurgerConstructorItem.propTypes = {
-    children: PropTypes.arrayOf(PropTypes.element).isRequired
+    children: PropTypes.arrayOf(PropTypes.element).isRequired,
+    index: PropTypes.number.isRequired
 };
 
 

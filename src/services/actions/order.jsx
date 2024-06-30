@@ -1,8 +1,8 @@
-import {postOrder} from '../../utils/burger-api';
+import { postOrder } from "../../utils/burger-api";
 
-export const _REQUEST_ORDER = '_REQUEST_ORDER';
-export const _SUCCESS_ORDER = '_SUCCESS_ORDER';
-export const _ERROR_ORDER = '_ERROR_ORDER';
+export const _REQUEST_ORDER = "_REQUEST_ORDER";
+export const _SUCCESS_ORDER = "_SUCCESS_ORDER";
+export const _ERROR_ORDER = "_ERROR_ORDER";
 
 export const getOrderDetails = (ingredients) => {
     return function (dispatch) {

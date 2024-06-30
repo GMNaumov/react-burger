@@ -2,9 +2,10 @@ import styles from "./burger-constructor-plug.module.css";
 import PropTypes from "prop-types";
 
 
-const BurgerConstructorPlug = ({text, position}) => {
+const BurgerConstructorPlug = ({ text, position }) => {
+
     return (
-        <div className={`${styles.wrapper}  ${position ? styles[position] : ""}`}> {text}</div>
+        <div className={`${styles.wrapper}  ${position ? styles[position] : ""}`} > {text}</div >
     )
 }
 
