@@ -1,28 +1,31 @@
-import PropTypes from "prop-types";
-
+import styles from "./order-details.module.css";
 import done from "../../images/done.svg";
+import { useSelector } from "react-redux";
 
-import orderDetailsStyles from "./order-details.module.css";
 
+const OrderDetails = () => {
 
-const OrderDetails = ({ title, number }) => {
+    const {
+        isLoading,
+        name,
+        order: { number }
+    } = useSelector(state => state.orderDetails)
 
     return (
-        <div className={`${orderDetailsStyles.wrapper} mt-5 mb-10`}>
-            <h1 className={`${orderDetailsStyles.title} mt-15`}>{number}</h1>
-            <h2 className={`${orderDetailsStyles.subtitle} mt-8`}>{title}</h2>
-            <div className='mt-15'>
-                <img src={done} alt={"Заказ подтвержден."}/>
-            </div>
-            <p className={orderDetailsStyles.notification}>Ваш заказ начали готовить</p>
-            <p className={orderDetailsStyles.announcement}>Дождитесь готовности на орбитальной станции</p>
-        </div >
+        <>
+            {isLoading ? < h1 > Подождите, идет загрузка ...</ h1> : (
+                <div className={`${styles.wrapper} mt-5 mb-10`}>
+                    <h1 className={`${styles.title} mt-15`}>{number}</h1>
+                    <h2 className={`${styles.subtitle} mt-8`}>{name}</h2>
+                    <div className="mt-15">
+                        <img src={done}  alt={"Ваш заказ начали готовить"}/>
+                    </div>
+                    <p className={styles.notification}>Ваш заказ начали готовить</p>
+                    <p className={styles.announcement}>Дождитесь готовности на орбитальной станции</p>
+                </div >
+            )}
+        </>
     )
 }
-
-OrderDetails.propTypes = {
-    title: PropTypes.string,
-    number: PropTypes.number,
-};
 
 export default OrderDetails;

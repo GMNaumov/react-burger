@@ -1,89 +1,55 @@
 import React from "react";
+import { Counter, CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
+import styles from "./burger-ingredient-card.module.css";
 
-import {
-    Counter,
-    CurrencyIcon
-} from "@ya.praktikum/react-developer-burger-ui-components";
+import cardTypes from "../../utils/data";
 
-import Modal from "../modal/modal";
-
-import burgerIngredientCardStyles from "./burger-ingredient-card.module.css";
-
-import IngredientDetailsCard from "../ingredient-details-card/ingredient-details-card";
-
-import {useDrag} from "react-dnd";
-import {useDispatch, useSelector} from "react-redux";
-import {
-    GET_CURRENT_BURGER_INGREDIENT,
-    REMOVE_CURRENT_BURGER_INGREDIENT
-} from '../../services/actions/current-burger-ingredient'
+import { useDrag } from "react-dnd";
+import { useSelector } from "react-redux";
+import { Link, useLocation } from "react-router-dom";
 
 
-const BurgerIngredientCard = (burgerIngredient) => {
-    const [isModalOpen, setIsOpenModal] = React.useState(false);
-    const {currentBurgerIngredient} = useSelector(state => state.currentBurgerIngredient);
-    const {bun, burgerComponents} = useSelector(state => state.burgerConstructor);
+const BurgerIngredientCard = (ingridient) => {
+    const location = useLocation();
+
+    const { bun, burgerComponents } = useSelector(state => state.burgerConstructor);
+
 
     const count = React.useMemo(() => {
-        const result = burgerIngredient.type === "bun"
-            ? bun?._id === burgerIngredient._id ? 2 : 0
-            : burgerComponents.filter((item) => item._id === burgerIngredient._id).length
+        const result = ingridient.type === "bun"
+            ? bun?._id === ingridient._id ? 2 : 0
+            : burgerComponents.filter((item) => item._id === ingridient._id).length
         return result;
-    }, [burgerIngredient, bun, burgerComponents])
+    }, [ingridient, bun, burgerComponents])
 
-
-    const updateBurgerConstructorIngredients = () => {
-        if (currentBurgerIngredient) {
-            dispatch({type: REMOVE_CURRENT_BURGER_INGREDIENT, burgerIngredient})
-        } else {
-            dispatch({type: GET_CURRENT_BURGER_INGREDIENT, burgerIngredient})
-        }
-    }
-
-    const dispatch = useDispatch();
 
     const [, dragRef] = useDrag({
-        type: "burgerIngredient",
-        item: {burgerIngredient},
+        type: "ingridient",
+        item: { ingridient },
         collect: monitor => ({
             isDrag: monitor.isDragging()
         })
     });
 
     return (
-        <>
-            <div className={burgerIngredientCardStyles.container}>
-                <div
-                    className={`${burgerIngredientCardStyles.wrapper} pt-6`}
-                    onClick={() => {
-                        setIsOpenModal(true);
-                        updateBurgerConstructorIngredients()
-                    }}
-
-                >
-                    <div ref={dragRef}>
-                        <img src={burgerIngredient.image} alt={burgerIngredient.name}/>
-                    </div>
-                    <div className={burgerIngredientCardStyles.inner}>
-                        <span>{burgerIngredient.price}</span>
-                        <CurrencyIcon type="primary"/>
-                    </div>
-                    <p>{burgerIngredient.name}</p>
-                </div>
-                <Counter count={count} style={{position: "absolute", top: "0", right: "20px"}}/>
+        <Link
+            to={`/ingridients/${ingridient._id}`}
+            state={{ background: location }}
+            className={styles.container}
+        >
+            <div ref={dragRef}>
+                <img src={ingridient.image}  alt={ingridient.name}/>
             </div>
-            {
-                isModalOpen && <Modal children={burgerIngredient}
-                                      setIsOpenModal={() => {
-                                          setIsOpenModal(false);
-                                          updateBurgerConstructorIngredients()
-                                      }}
-                                      title={"Детали ингридиента"}>
-                    <IngredientDetailsCard ingredient={burgerIngredient}/>
-                </Modal>
-            }
-        </>
+            <div className={styles.price}>
+                <span>{ingridient.price}</span>
+                <CurrencyIcon type="primary" />
+            </div>
+            <p>{ingridient.name}</p>
+            <Counter count={count} />
+        </Link>
     )
 }
+
+BurgerIngredientCard.propTypes = { cardTypes };
 
 export default BurgerIngredientCard;

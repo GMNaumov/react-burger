@@ -1,4 +1,4 @@
-import { _REQUEST_ORDER, _SUCCESS_ORDER, _ERROR_ORDER } from '../actions/order';
+import { _REQUEST_ORDER, _SUCCESS_ORDER, _ERROR_ORDER } from "../actions/order";
 
 const initialState = {
     isLoading: false,

@@ -40,9 +40,3 @@
     transform: rotate(360deg);
   }
 }
-
-.Body {
-  display: flex;
-  justify-content: space-around;
-  padding: 0 100px;
-}

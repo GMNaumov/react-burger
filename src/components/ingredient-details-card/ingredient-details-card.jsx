@@ -1,38 +1,64 @@
 import styles from "./ingredient-details-card.module.css";
-import burgerIngredientsType from "../../utils/data";
+import React from "react";
 
-const IngredientDetailsCard = ({ingredient}) => {
+import { useParams } from "react-router-dom";
+import { getIngredients } from "../../services/actions/burger-ingredients"
+import { useDispatch, useSelector } from "react-redux";
+import { GET_CURRENT_BURGER_INGREDIENT } from "../../services/actions/current-burger-ingredient"
+
+const IngredientDetailsCard = () => {
+    const dispatch = useDispatch();
+    const { id } = useParams();
+
+    const { burgerIngredients, isLoading } = useSelector(store => store.burgerIngredients);
+    const { currentBurgerIngredient } = useSelector(store => store.currentBurgerIngredient);
+
+
+    const current = burgerIngredients.find((ingredient) => ingredient._id === id)
+
+    React.useEffect(() => {
+        dispatch(getIngredients())
+    }, [dispatch]);
+
+    React.useEffect(() => {
+        if (current) {
+            dispatch({ type: GET_CURRENT_BURGER_INGREDIENT, current })
+        }
+    }, [dispatch, current]);
+
+
 
     return (
-        <div className={`${styles.wrapper} mt-4`}>
-            <div>
-                <img src={ingredient.image_large} alt={ingredient.name} />
-            </div>
-            <h2 className={`${styles.subtitle} mt-4`}>{ingredient.name}</h2>
-            <div className={`${styles.block} mt-8`}>
-                <div className={`${styles.inner} mr-5`}>
-                    <p className={styles.text}>Калории, ккал</p>
-                    <p className={`${styles.text} ${styles.num}`}>{ingredient.calories}</p>
-                </div>
-                <div className={`${styles.inner} mr-5`}>
-                    <p className={styles.text}>Белки, г</p>
-                    <p className={`${styles.text} ${styles.num}`}>{ingredient.proteins}</p>
-                </div>
-                <div className={`${styles.inner} mr-5`}>
-                    <p className={styles.text}>Жиры, г</p>
-                    <p className={`${styles.text} ${styles.num}`}>{ingredient.fat}</p>
-                </div>
-                <div className={`${styles.inner} mr-5`}>
-                    <p className={styles.text}>Углеводы, г</p>
-                    <p className={`${styles.text} ${styles.num}`}>{ingredient.carbohydrates}</p>
-                </div>
-            </div>
-        </div>
+        <>
+            {isLoading && currentBurgerIngredient === null ? <h1> Подождите, идет загрузка ...</h1 > : (
+                <div className={`${styles.wrapper} mt-4`}>
+                    <div>
+                        <img src={currentBurgerIngredient?.image_large} />
+                    </div>
+                    <h2 className={`${styles.subtitle} mt-4`}>{currentBurgerIngredient?.name}</h2>
+                    <div className={`${styles.block} mt-8`}>
+                        <div className={`${styles.inner} mr-5`}>
+                            <p className={styles.text}>Калории, ккал</p>
+                            <p className={`${styles.text} ${styles.num}`}>{currentBurgerIngredient?.calories}</p>
+                        </div >
+                        <div className={`${styles.inner} mr-5`}>
+                            <p className={styles.text}>Белки, г</p>
+                            <p className={`${styles.text} ${styles.num}`}>{currentBurgerIngredient?.proteins}</p>
+                        </div>
+                        <div className={`${styles.inner} mr-5`}>
+                            <p className={styles.text}>Жиры, г</p>
+                            <p className={`${styles.text} ${styles.num}`}>{currentBurgerIngredient?.fat}</p>
+                        </div>
+                        <div className={`${styles.inner} mr-5`}>
+                            <p className={styles.text}>Углеводы, г</p>
+                            <p className={`${styles.text} ${styles.num}`}>{currentBurgerIngredient?.carbohydrates}</p>
+                        </div>
+                    </div >
+                </div >
+            )
+            }
+        </>
     )
 }
 
-IngredientDetailsCard.propTypes = {
-    ingredient: burgerIngredientsType,
-};
-
-export default IngredientDetailsCard;
+export default IngredientDetailsCard

@@ -1,16 +1,16 @@
-import {getBurgerIngredientsRequest} from '../../utils/burger-api';
+import { getIngredientsRequest } from "../../utils/burger-api";
 
-export const REQUEST_GET_BURGER_INGREDIENTS = '_REQUEST';
-export const SUCCESS_GET_BURGER_INGREDIENTS = '_SUCCESS';
-export const ERROR_GET_BURGER_INGREDIENTS = '_ERROR';
+export const REQUEST_GET_BURGER_INGREDIENTS = "REQUEST_GET_BURGER_INGREDIENTS";
+export const SUCCESS_GET_BURGER_INGREDIENTS = "SUCCESS_GET_BURGER_INGREDIENTS";
+export const ERROR_GET_BURGER_INGREDIENTS = "ERROR_GET_BURGER_INGREDIENTS";
 
 export const getIngredients = () => {
     return function (dispatch) {
         dispatch({
             type: REQUEST_GET_BURGER_INGREDIENTS,
         })
-        getBurgerIngredientsRequest().then(res => {
-            if (res.success && res) {
+        getIngredientsRequest().then(res => {
+            if (res && res.success) {
                 dispatch({
                     type: SUCCESS_GET_BURGER_INGREDIENTS,
                     ingredients: res.data,
@@ -20,7 +20,7 @@ export const getIngredients = () => {
                     type: ERROR_GET_BURGER_INGREDIENTS,
                 })
             }
-        }).catch(() => {
+        }).catch(err => {
             dispatch({
                 type: ERROR_GET_BURGER_INGREDIENTS,
             })
