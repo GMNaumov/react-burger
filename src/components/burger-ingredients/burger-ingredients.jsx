@@ -1,14 +1,14 @@
 import styles from "./burger-ingredients.module.css";
 import React from "react";
-import PropTypes from "prop-types";
-import cardTypes from "../../utils/data";
 
 import { Tab } from "@ya.praktikum/react-developer-burger-ui-components";
 import BurgerIngredientsCategory from "../burger-ingredients-category/burger-ingredients-category"
 import { Link } from "react-scroll"
+import {useSelector} from "react-redux";
 
-const BurgerIngredients = ({ title, burgerIngredients }) => {
+const BurgerIngredients = () => {
   const [current, setCurrent] = React.useState("Булки");
+  const { burgerIngredients } = useSelector(store => store.burgerIngredients);
 
   const bun = React.useMemo(
     () => burgerIngredients.filter((ingridient) => ingridient.type === "bun")
@@ -23,7 +23,7 @@ const BurgerIngredients = ({ title, burgerIngredients }) => {
 
   return (
     <div className={styles.wrapper}>
-      <h1 className={`${styles.title} pt-10`}>{title}</h1>
+      <h1 className={`${styles.title} pt-10`}>{"Соберите бургер"}</h1>
       <div className={`${styles.tabs} pt-5`}>
         <Link to="bun" spy={true} smooth={true} offset={0} duration={800} containerId="containerElement"
           onSetActive={() => setCurrent("Булки")}>
@@ -47,10 +47,6 @@ const BurgerIngredients = ({ title, burgerIngredients }) => {
   );
 }
 
-BurgerIngredients.propTypes = {
-  title: PropTypes.string.isRequired,
-  burgerIngredients: PropTypes.arrayOf(cardTypes.isRequired).isRequired
-};
 
 export default BurgerIngredients;
 

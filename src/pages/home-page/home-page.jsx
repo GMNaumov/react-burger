@@ -3,7 +3,7 @@ import styles from "./home-page.module.css";
 import BurgerIngredients from "../../components/burger-ingredients/burger-ingredients"
 import BurgerConstructor from "../../components/burger-constructor/burger-constructor"
 
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
@@ -18,7 +18,7 @@ export const HomePage = () => {
             ) : burgerIngredients && burgerIngredients.length ? (
                 <div className={styles.wrapper}>
                     <DndProvider backend={HTML5Backend}>
-                        <BurgerIngredients title={"Соберите бургер"} burgerIngredients={burgerIngredients} />
+                        <BurgerIngredients />
                         <BurgerConstructor />
                     </DndProvider>
                 </div >

@@ -23,7 +23,6 @@ const BurgerConstructor = () => {
     const {bun, burgerComponents, totalPrice} = useSelector(state => state.burgerConstructor);
     const dispatch = useDispatch();
 
-
     const [, dropTarget] = useDrop({
         accept: "ingridient",
         drop: ({ingridient}) => {
