@@ -164,3 +164,9 @@ e
 0src/pages/register-page/register-page.module.css,7\3\737d0caefcbcbe7efb85819907dbcff920bc0806
 Y
 )src/pages/register-page/register-page.jsx,e\a\ea3635a7eca68249eed6557e17ec2a9b06be4b38
+=
+tsconfig.json,6\1\61ebb9fd6e8cf9082658121d5d81e297791dacd0
+<
+package.json,7\0\7030d0b2f71b999ff89a343de08c414af32fc93a
+A
+package-lock.json,f\a\fa288d1472d29beccb489a676f68739ad365fc47

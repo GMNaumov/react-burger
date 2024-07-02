@@ -2,7 +2,6 @@ import styles from "./ingredient-details-card.module.css";
 import React from "react";
 
 import { useParams } from "react-router-dom";
-import { getIngredients } from "../../services/actions/burger-ingredients"
 import { useDispatch, useSelector } from "react-redux";
 import { GET_CURRENT_BURGER_INGREDIENT } from "../../services/actions/current-burger-ingredient"
 
@@ -13,12 +12,7 @@ const IngredientDetailsCard = () => {
     const { burgerIngredients, isLoading } = useSelector(store => store.burgerIngredients);
     const { currentBurgerIngredient } = useSelector(store => store.currentBurgerIngredient);
 
-
     const current = burgerIngredients.find((ingredient) => ingredient._id === id)
-
-    React.useEffect(() => {
-        dispatch(getIngredients())
-    }, [dispatch]);
 
     React.useEffect(() => {
         if (current) {

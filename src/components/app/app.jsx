@@ -18,11 +18,19 @@ import Modal from "../modal-window/modal-window";
 import OrderDetails from "../order-details/order-details";
 
 import appStyles from "./app.module.css";
+import {useEffect} from "react";
+import {getIngredients} from "../../services/actions/burger-ingredients";
+import {useDispatch} from "react-redux";
 
 
 const App = () => {
   const location = useLocation();
+  const dispatch = useDispatch();
   const background = location.state && location.state.background;
+
+  useEffect(() => {
+    dispatch(getIngredients())
+  }, [dispatch]);
 
   return (
     <div className={appStyles.App}>
