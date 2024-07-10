@@ -1,8 +1,10 @@
-import { updateAccessToken, setCookie } from "../../../utils/burger-api";
+import { updateAccessToken } from '../../../utils/burger-api';
+import { setCookie } from 'typescript-cookie'
 
-export const UPDATE_TOKEN_REQUEST = "UPDATE_TOKEN_REQUEST";
-export const UPDATE_TOKEN_SUCCESS = "UPDATE_TOKEN_SUCCESS";
-export const UPDATE_TOKEN_ERROR = "UPDATE_TOKEN_ERROR";
+
+export const UPDATE_TOKEN_REQUEST = 'UPDATE_TOKEN_REQUEST';
+export const UPDATE_TOKEN_SUCCESS = 'UPDATE_TOKEN_SUCCESS';
+export const UPDATE_TOKEN_ERROR = 'UPDATE_TOKEN_ERROR';
 
 export const updateToken = (token) => {
     return function (dispatch) {
@@ -12,11 +14,11 @@ export const updateToken = (token) => {
         updateAccessToken(token).then(res => {
             if (res && res.success) {
 
-                let accessToken = res.accessToken.split("Bearer ")[1];
+                let accessToken = res.accessToken.split('Bearer ')[1];
                 let refreshToken = res.refreshToken;
 
-                setCookie("accessToken", accessToken)
-                localStorage.setItem("refreshToken", refreshToken);
+                setCookie('accessToken', accessToken)
+                localStorage.setItem('refreshToken', refreshToken);
 
                 dispatch({
                     type: UPDATE_TOKEN_SUCCESS,

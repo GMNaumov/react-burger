@@ -22,55 +22,54 @@ import {useEffect} from "react";
 import {getIngredients} from "../../services/actions/burger-ingredients";
 import {useDispatch} from "react-redux";
 
-
 const App = () => {
-  const location = useLocation();
-  const dispatch = useDispatch();
-  const background = location.state && location.state.background;
+    const location = useLocation();
+    const dispatch = useDispatch();
+    const background = location.state && location.state.background;
 
-  useEffect(() => {
-    dispatch(getIngredients())
-  }, [dispatch]);
+    useEffect(() => {
+        dispatch(getIngredients())
+    }, [dispatch]);
 
-  return (
-    <div className={appStyles.App}>
-      <AppHeader />
-      <Routes location={background || location}>
-        <Route path="/" element={<HomePage />} />
-        <Route path="ingridients/:id" element={<IngredientDetailsCard />} />
-        <Route element={<ProtectedRouteElement path="/order" element={<Modal>
-          <OrderDetails />
-        </Modal>
-        } />}
-        />
+    return (
+        <div className={appStyles.App}>
+            <AppHeader />
+            <Routes location={background || location}>
+                <Route path="/" element={<HomePage />} />
+                <Route path="ingridients/:id" element={<IngredientDetailsCard />} />
+                <Route element={<ProtectedRouteElement path="/order" element={<Modal>
+                    <OrderDetails />
+                </Modal>
+                } />}
+                />
 
-        <Route path="/profile" element={<ProtectedRouteElement element={<ProfilePage />} />}>
-          <Route path="/profile" element={<ProfileInfo />} />
-          <Route path=":orders" element={<ProfileOrdersPage />} />
-        </Route>
-        <Route path="/orders" element={<OrdersPage />} />
+                <Route path="/profile" element={<ProtectedRouteElement element={<ProfilePage />} />}>
+                    <Route path="/profile" element={<ProfileInfo />} />
+                    <Route path=":orders" element={<ProfileOrdersPage />} />
+                </Route>
+                <Route path="/orders" element={<OrdersPage />} />
 
-        <Route path="/login" element={<UnProtectedRouteElement element={<LoginPage />} />} />
-        <Route path="/register" element={<UnProtectedRouteElement element={<RegisterPage />} />} />
-        <Route path="/forgot-password" element={<UnProtectedRouteElement element={<ForgotPasswordPage />} />} />
-        <Route path="/reset-password" element={<UnProtectedRouteElement element={<ResetPasswordPage />} />} />
+                <Route path="/login" element={<UnProtectedRouteElement element={<LoginPage />} />} />
+                <Route path="/register" element={<UnProtectedRouteElement element={<RegisterPage />} />} />
+                <Route path="/forgot-password" element={<UnProtectedRouteElement element={<ForgotPasswordPage />} />} />
+                <Route path="/reset-password" element={<UnProtectedRouteElement element={<ResetPasswordPage />} />} />
 
-      </Routes>
-      {background &&
-        <Routes>
-          <Route path="/order" element={<ProtectedRouteElement element={<Modal>
-            <OrderDetails />
-          </Modal>
-          } />}
-          />
-          <Route path="ingridients/:id" element={<Modal title={"Детали ингридиента"}>
-            <IngredientDetailsCard />
-          </Modal>}
-          />
-        </Routes>
-      }
-    </div >
-  );
+            </Routes>
+            {background &&
+                <Routes>
+                    <Route path="/order" element={<ProtectedRouteElement element={<Modal>
+                        <OrderDetails />
+                    </Modal>
+                    } />}
+                    />
+                    <Route path="ingridients/:id" element={<Modal title={"Детали ингридиента"}>
+                        <IngredientDetailsCard />
+                    </Modal>}
+                    />
+                </Routes>
+            }
+        </div >
+    );
 }
 
 export default App;

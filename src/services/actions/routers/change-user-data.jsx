@@ -1,8 +1,8 @@
-import { updateUser, refreshTokens } from "../../../utils/burger-api";
+import { updateUser, refreshTokens } from '../../../utils/burger-api';
 
-export const UPDATE_USER_DATA_REQUEST = "UPDATE_USER_DATA_REQUEST";
-export const UPDATE_USER_DATA_SUCCESS = "UPDATE_USER_DATA_SUCCESS";
-export const UPDATE_USER_DATA_ERROR = "UPDATE_USER_DATA_ERROR";
+export const UPDATE_USER_DATA_REQUEST = 'UPDATE_USER_DATA_REQUEST';
+export const UPDATE_USER_DATA_SUCCESS = 'UPDATE_USER_DATA_SUCCESS';
+export const UPDATE_USER_DATA_ERROR = 'UPDATE_USER_DATA_ERROR';
 
 export const changeUserData = (name, email, password) => {
     return function (dispatch) {
@@ -19,7 +19,7 @@ export const changeUserData = (name, email, password) => {
                 },
             })
         }).catch(err => {
-            if (err.message === "jwt expired") {
+            if (err.message === 'jwt expired') {
                 refreshTokens().then(() => dispatch(changeUserData()))
             } else {
                 dispatch({

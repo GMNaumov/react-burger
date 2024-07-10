@@ -1,7 +1,7 @@
 import {
     GET_CURRENT_BURGER_INGREDIENT,
     REMOVE_CURRENT_BURGER_INGREDIENT,
-} from "../actions/current-burger-ingredient";
+} from '../actions/current-burger-ingredient';
 
 const initialState = {
     currentBurgerIngredient: null

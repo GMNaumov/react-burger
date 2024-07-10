@@ -1,8 +1,8 @@
-import { getUser, refreshTokens } from "../../../utils/burger-api";
+import { getUser, refreshTokens } from '../../../utils/burger-api';
 
-export const GET_PROFILE_DATA_REQUEST = "GET_PROFILE_DATA_REQUEST";
-export const GET_PROFILE_DATA_SUCCESS = "GET_PROFILE_DATA_SUCCESS";
-export const GET_PROFILE_DATA_ERROR = "GET_PROFILE_DATA_ERROR";
+export const GET_PROFILE_DATA_REQUEST = 'GET_PROFILE_DATA_REQUEST';
+export const GET_PROFILE_DATA_SUCCESS = 'GET_PROFILE_DATA_SUCCESS';
+export const GET_PROFILE_DATA_ERROR = 'GET_PROFILE_DATA_ERROR';
 
 export const getUserData = () => {
     return function (dispatch) {
@@ -11,7 +11,6 @@ export const getUserData = () => {
             isLoading: true,
         })
         getUser().then(res => {
-            //console.log(res)
             dispatch({
                 type: GET_PROFILE_DATA_SUCCESS,
                 user: {
@@ -20,8 +19,7 @@ export const getUserData = () => {
                 }
             })
         }).catch(err => {
-            //console.log(err.message)
-            if (err.message === "jwt expired") {
+            if (err.message === 'jwt expired') {
                 refreshTokens().then(() => dispatch(getUserData()))
             } else {
                 dispatch({

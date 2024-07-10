@@ -4,9 +4,9 @@ import {
     REMOVE_BURGER_COMPONENT,
     COUNT_TOTAL_AMOUNT,
     SORT_BURGER_INGREDIENTS
-} from "../actions/burger-constructor";
+} from '../actions/burger-constructor';
 
-import uniqid from "uniqid";
+import uniqid from 'uniqid';
 
 const initialState = {
     bun: null,
@@ -36,7 +36,7 @@ export const burgerConstructorReducer = (state = initialState, action) => {
             return {
                 ...state,
                 burgerComponents: [...state.burgerComponents]
-                    .filter(burgerIngredient => burgerIngredient.uniqid !== rest.ingridient.uniqid)
+                    .filter(ingridient => ingridient.uniqid !== rest.ingridient.uniqid)
             }
         }
         case COUNT_TOTAL_AMOUNT: {
@@ -44,7 +44,7 @@ export const burgerConstructorReducer = (state = initialState, action) => {
             return {
                 ...state,
                 totalPrice: [...state.burgerComponents]
-                    .reduce((acc, burgerIngredient) => acc + burgerIngredient.price, 0) + bunPrice
+                    .reduce((acc, ingridient) => acc + ingridient.price, 0) + bunPrice
             }
         }
         case SORT_BURGER_INGREDIENTS: {

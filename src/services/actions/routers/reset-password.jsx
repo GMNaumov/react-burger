@@ -1,8 +1,8 @@
-import { passwordRecovery } from "../../../utils/burger-api";
+import { passwordRecovery } from '../../../utils/burger-api';
 
-export const RESET_PASSWORD_REQUEST = "FORGOT_PASSWORD_REQUEST";
-export const RESET_PASSWORD_SUCCESS = "FORGOT_PASSWORD_SUCCESS";
-export const RESET_PASSWORD_ERROR = "FORGOT_PASSWORD_ERROR";
+export const RESET_PASSWORD_REQUEST = 'FORGOT_PASSWORD_REQUEST';
+export const RESET_PASSWORD_SUCCESS = 'FORGOT_PASSWORD_SUCCESS';
+export const RESET_PASSWORD_ERROR = 'FORGOT_PASSWORD_ERROR';
 
 export const resetPassword = (password, token) => {
     return function (dispatch) {
