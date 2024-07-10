@@ -5,29 +5,30 @@ import { ICardTypes } from '../../utils/propsType';
 import { Tab } from "@ya.praktikum/react-developer-burger-ui-components";
 import BurgerIngredientsCategory from '../burger-ingredients-category/burger-ingredients-category'
 import { Link } from 'react-scroll'
+import {useSelector} from "react-redux";
 
 interface IBurgerIngredients {
-  title: string;
   burgerIngredients: Array<ICardTypes>
 }
 
-const BurgerIngredients: FC<IBurgerIngredients> = ({ title, burgerIngredients }) => {
+const BurgerIngredients: FC<IBurgerIngredients> = () => {
   const [current, setCurrent] = React.useState<string>('Булки');
+  const { burgerIngredients } = useSelector((store: any) => store.burgerIngredients);
 
   const bun = React.useMemo(
-    () => burgerIngredients.filter((ingridient) => ingridient.type === 'bun')
+    () => burgerIngredients.filter((ingridient: ICardTypes) => ingridient.type === 'bun')
     , [burgerIngredients]);
   const main = React.useMemo(
-    () => burgerIngredients.filter((ingridient) => ingridient.type === 'main')
+    () => burgerIngredients.filter((ingridient: ICardTypes) => ingridient.type === 'main')
     , [burgerIngredients]);
   const sauces = React.useMemo(
-    () => burgerIngredients.filter((ingridient) => ingridient.type === 'sauce')
+    () => burgerIngredients.filter((ingridient: ICardTypes) => ingridient.type === 'sauce')
     , [burgerIngredients]);
 
 
   return (
     <div className={styles.wrapper}>
-      <h1 className={`${styles.title} pt-10`}>{title}</h1>
+      <h1 className={`${styles.title} pt-10`}>{"Соберите бургер"}</h1>
       <div className={`${styles.tabs} pt-5`}>
         <Link to="bun" spy={true} smooth={true} offset={0} duration={800} containerId="containerElement"
           onSetActive={() => setCurrent('Булки')}>
