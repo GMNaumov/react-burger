@@ -1,21 +1,21 @@
-import styles from './register-page.module.css';
-import { userRegistration } from '../../services/actions/routers/user-registration'
-import { useForm } from '../../hooks/useForm'
+import styles from "./register-page.module.css";
+import {userRegistration} from "../../services/actions/routers/user-registration"
+import {useForm} from "../../hooks/useForm"
 
-import { EmailInput, Input, PasswordInput } from '@ya.praktikum/react-developer-burger-ui-components';
-import { Button } from '@ya.praktikum/react-developer-burger-ui-components';
-import { Link } from 'react-router-dom';
+import {EmailInput, Input, PasswordInput, Button} from "@ya.praktikum/react-developer-burger-ui-components";
+import {Link} from "react-router-dom";
 
-import { useDispatch } from 'react-redux';
+import {useDispatch} from "../../services/typesOfStoreAndThunk";
 
 
 export const RegisterPage = () => {
-    const { formValues, handleInputsChange } = useForm({ name: "", email: "", password: "", });
+    const {formValues, handleInputsChange} = useForm({name: "", email: "", password: "",});
 
     const dispatch = useDispatch();
 
-    const handleEmail = () => {
-        dispatch<any>(userRegistration(formValues))
+    const handleEmail = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault()
+        dispatch(userRegistration(formValues.name, formValues.email, formValues.password))
     }
 
     return (
@@ -25,35 +25,35 @@ export const RegisterPage = () => {
                 name="name"
                 value={formValues.name}
                 onChange={(e) => handleInputsChange(e)}
-                placeholder={'Имя'}
+                placeholder={"Имя"}
                 extraClass="mt-6"
             />
             <EmailInput
                 name="email"
                 value={formValues.email}
                 onChange={(e) => handleInputsChange(e)}
-                placeholder={'Укажите e-mail'}
+                placeholder={"Укажите e-mail"}
                 extraClass="mt-6"
             />
             <PasswordInput
                 name="password"
                 value={formValues.password}
                 onChange={(e) => handleInputsChange(e)}
-                placeholder={'Пароль'}
+                placeholder={"Пароль"}
                 extraClass="mt-6"
-                icon={'ShowIcon'}
+                icon={"ShowIcon"}
             />
             <Button
                 disabled={!formValues.name || !formValues.email || !formValues.password}
                 htmlType="submit" size="medium" extraClass="mt-6"
             >Войти</Button>
             <div className={styles.block}>
-                <div className={`${styles.inner} mt-4`} >
+                <div className={`${styles.inner} mt-4`}>
                     <p className={styles.text}>Уже зарегистрированы?</p>
                     <Link to="/login" className={styles.link}>Войти</Link>
                 </div>
             </div>
-        </form >
+        </form>
     )
 }
 

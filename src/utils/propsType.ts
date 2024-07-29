@@ -1,6 +1,6 @@
 export interface ICardTypes {
     _id: string;
-    type: 'bun' | 'main' | 'sauce';
+    type: "bun" | "main" | "sauce";
     name: string;
     image: string;
     image_large: string;
@@ -10,4 +10,18 @@ export interface ICardTypes {
     fat: number;
     carbohydrates: number;
     price: number;
+    uniqid?: string;
 }
+
+export interface IOrderTypes {
+    _id: string;
+    name: string;
+    ingredients: Array<string>;
+    number: number;
+    status: string;
+    visibleStatus?: boolean;
+    updatedAt: string;
+    createdAt: string;
+    page?: string;
+}
+

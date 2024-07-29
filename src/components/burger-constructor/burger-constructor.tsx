@@ -1,20 +1,19 @@
-import styles from './burger-constructor.module.css';
-import { ICardTypes } from '../../utils/propsType';
+import styles from "./burger-constructor.module.css";
+import { ICardTypes } from "../../utils/propsType";
 
 import { useDrop } from "react-dnd";
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from "../../services/typesOfStoreAndThunk";
 
-import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
-import { ConstructorElement } from '@ya.praktikum/react-developer-burger-ui-components';
+import { CurrencyIcon, ConstructorElement} from "@ya.praktikum/react-developer-burger-ui-components";
 
-import BurgerConstructorPlug from '../burger-constructor-plug/burger-constructor-plug'
-import BurgerConstructorList from '../burger-constructor-list/burger-constructor-list'
-import BurgerConstructorAmount from '../burger-constructor-amount/burger-constructor-amount'
+import BurgerConstructorPlug from "../burger-constructor-plug/burger-constructor-plug"
+import BurgerConstructorList from "../burger-constructor-list/burger-constructor-list"
+import BurgerConstructorAmount from "../burger-constructor-amount/burger-constructor-amount"
 
-import { ADD_BURGER_COMPONENT, ADD_BUN, COUNT_TOTAL_AMOUNT } from '../../services/actions/burger-constructor'
+import { ADD_BURGER_COMPONENT, ADD_BUN, COUNT_TOTAL_AMOUNT } from "../../services/actions/burger-constructor"
 
 const BurgerConstructor = () => {
-    const { bun, burgerComponents, totalPrice } = useSelector((state: any) => state.burgerConstructor);
+    const { bun, currentBurgerIngredient, totalPrice } = useSelector(state => state.burgerConstructor);
     const dispatch = useDispatch();
 
     interface IIngridient {
@@ -22,9 +21,9 @@ const BurgerConstructor = () => {
     }
 
     const [, dropTarget] = useDrop({
-        accept: 'ingridient',
+        accept: "ingridient",
         drop: ({ ingridient }: IIngridient) => {
-            if (ingridient.type === 'bun') {
+            if (ingridient.type === "bun") {
                 dispatch({ type: ADD_BUN, ingridient })
             } else {
                 dispatch({ type: ADD_BURGER_COMPONENT, ingridient })
@@ -48,10 +47,10 @@ const BurgerConstructor = () => {
                         thumbnail={`${bun.image}`}
                     />
                 )}
-                {burgerComponents.length === 0 ? (
+                {currentBurgerIngredient.length === 0 ? (
                     <BurgerConstructorPlug text="Начинки" position="middle" />
                 ) : (
-                    <BurgerConstructorList ingridients={burgerComponents} />
+                    <BurgerConstructorList burgerIngredients={currentBurgerIngredient} />
                 )}
 
                 {!bun ? (

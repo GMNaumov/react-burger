@@ -1,10 +1,29 @@
-.title {
-    margin: 0 0 24px 0;
-    text-align: start;
+.wrapper {
+    max-width: 600px;
+    margin-right: 100px;
 }
 
-.cards {
-    display: grid;
-    padding: 0 16px;
-    grid-template-columns: 1fr 1fr;
+.title {
+    text-align: start;
+    font-weight: 700;
+    font-size: 36px;
+    margin: 0;
+}
+
+.tabs {
+    display: flex;
+    justify-content: center;
+}
+
+.cardsContainer {
+    max-width: 100%;
+    max-height: 500px;
+    overflow: hidden;
+    overflow-y: auto;
+    border-radius: 8px;
+}
+
+.cardsContainer::-webkit-scrollbar-track {
+    background-color: none;
+    border-radius: 8px;
 }

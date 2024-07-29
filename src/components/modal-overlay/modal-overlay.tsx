@@ -1,4 +1,4 @@
-import styles from './modal-overlay.module.css';
+import styles from "./modal-overlay.module.css";
 import { FC } from "react";
 
 interface IModalOverlay {

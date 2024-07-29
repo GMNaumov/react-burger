@@ -1,32 +1,29 @@
-import React, { FC } from 'react';
-import styles from './burger-constructor-list.module.css';
-import { ICardTypes } from '../../utils/propsType';
+import React, { FC } from "react";
+import styles from "./burger-constructor-list.module.css";
+import { ICardTypes } from "../../utils/propsType";
 
-import BurgerConstructorItem from '../burger-constructor-item/burger-constructor-item';
-import { ConstructorElement } from '@ya.praktikum/react-developer-burger-ui-components';
-import { DragIcon } from '@ya.praktikum/react-developer-burger-ui-components';
+import BurgerConstructorItem from "../burger-constructor-item/burger-constructor-item";
+import { ConstructorElement, DragIcon} from "@ya.praktikum/react-developer-burger-ui-components";
 
-import { REMOVE_BURGER_COMPONENT, COUNT_TOTAL_AMOUNT } from '../../services/actions/burger-constructor'
-import { useDispatch } from 'react-redux';
 
-interface IConstructorElementType extends ICardTypes {
-    uniqid: string
-}
+import { REMOVE_BURGER_COMPONENT, COUNT_TOTAL_AMOUNT } from "../../services/actions/burger-constructor"
+import { useDispatch } from "../../services/typesOfStoreAndThunk";
+
 
 interface IBurgerConstructorlist {
-    ingridients: Array<IConstructorElementType>
+    burgerIngredients: Array<ICardTypes>
 }
 
-const BurgerConstructorlist: FC<IBurgerConstructorlist> = ({ ingridients }) => {
+const BurgerConstructorlist: FC<IBurgerConstructorlist> = ({ burgerIngredients }) => {
 
     const filteredIngridients = React.useMemo(
-        () => ingridients.filter((ingridient) => ingridient.type !== 'bun')
-        , [ingridients]);
+        () => burgerIngredients.filter((ingridient) => ingridient.type !== "bun")
+        , [burgerIngredients]);
 
 
     const dispatch = useDispatch();
 
-    const removeIngridient = (ingridient: IConstructorElementType) => {
+    const removeIngridient = (ingridient: ICardTypes) => {
         dispatch({ type: REMOVE_BURGER_COMPONENT, ingridient })
         dispatch({ type: COUNT_TOTAL_AMOUNT, ingridient })
     }

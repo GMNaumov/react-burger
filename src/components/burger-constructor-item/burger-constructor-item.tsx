@@ -2,11 +2,11 @@ import styles from "./burger-constructor-item.module.css";
 import type {Identifier} from "dnd-core";
 
 import {useRef, FC, PropsWithChildren} from "react";
-import {useDispatch} from "react-redux";
 
 import {useDrag, useDrop} from "react-dnd";
 
 import {SORT_BURGER_INGREDIENTS} from "../../services/actions/burger-constructor";
+import {useDispatch} from "../../services/typesOfStoreAndThunk";
 
 interface IBurgerConstructorItem {
     index: number;
@@ -56,7 +56,6 @@ const BurgerConstructorItem: FC<PropsWithChildren<IBurgerConstructorItem>> = ({c
 
             dispatch({type: SORT_BURGER_INGREDIENTS, rest: {from: dragIndex, to: hoverIndex}});
 
-            // Сразу меняем индекс перемещаемого элемента
             item.index = hoverIndex;
         }
     });
@@ -74,7 +73,7 @@ const BurgerConstructorItem: FC<PropsWithChildren<IBurgerConstructorItem>> = ({c
     drag(drop(ref));
 
     return (
-        <div ref={ref} data-handler-id={handlerId} className={`${styles.item}`}>
+        <div ref={ref} data-handler-id={handlerId} className={styles.item}>
             {children}
         </div>
     )

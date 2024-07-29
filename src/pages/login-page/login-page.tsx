@@ -1,43 +1,50 @@
-import styles from './login-page.module.css';
-import { userLogin } from '../../services/actions/routers/user-login'
+import styles from "./login-page.module.css";
+import { userLogin } from "../../services/actions/routers/user-login"
 
-import { EmailInput, PasswordInput } from '@ya.praktikum/react-developer-burger-ui-components';
-import { Button } from '@ya.praktikum/react-developer-burger-ui-components';
-import { Link } from 'react-router-dom';
+import { EmailInput, PasswordInput, Button} from "@ya.praktikum/react-developer-burger-ui-components";
+import { Link } from "react-router-dom";
 
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch } from "../../services/typesOfStoreAndThunk";
+import { useForm } from "../../hooks/useForm";
 
 
 export const LoginPage = () => {
 
-    const [email, setEmail] = useState<string>('');
-    const [password, setPassword] = useState<string>('');
+    const { formValues, handleInputsChange } = useForm({ email: "", password: "", });
+
 
     const dispatch = useDispatch();
 
-    const handleEmail = () => {
-        dispatch<any>(userLogin(email, password))
+    const handleLogin = (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+        dispatch(userLogin(formValues.email, formValues.password))
     }
 
     return (
         <div className={`${styles.wrapper} pl-2`}>
             <h1>Вход</h1>
-            <form onSubmit={handleEmail}>
+            <form onSubmit={handleLogin} className={styles.form}>
                 <EmailInput
-                    value={email}
-                    onChange={e => setEmail(e.target.value)}
-                    placeholder={'Укажите e-mail'}
+                    name="email"
+                    value={formValues.email}
+                    onChange={e => handleInputsChange(e)}
+                    placeholder={"Укажите e-mail"}
                     extraClass="mt-6"
                 />
                 <PasswordInput
-                    value={password}
-                    onChange={e => setPassword(e.target.value)}
-                    placeholder={'Пароль'}
+                    name="password"
+                    value={formValues.password}
+                    onChange={e => handleInputsChange(e)}
+                    placeholder={"Пароль"}
                     extraClass="mt-6"
-                    icon={'ShowIcon'}
+                    icon={"ShowIcon"}
                 />
-                <Button htmlType="submit" disabled={!email} size="medium" extraClass="mt-6">Войти</Button>
+                <Button
+                    htmlType="submit"
+                    disabled={!formValues.email}
+                    size="medium"
+                    extraClass="mt-6"
+                >Войти</Button>
             </form>
             <div className={styles.block}>
                 <div className={`${styles.inner} mt-4`} >

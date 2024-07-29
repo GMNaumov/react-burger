@@ -1,25 +1,20 @@
-import styles from './ingredient-details-card.module.css';
-import React from 'react';
-import { ICardTypes } from '../../utils/propsType';
+import styles from "./ingredient-details-card.module.css";
+import React from "react";
+import { useParams } from "react-router-dom";
 
-import { useParams } from 'react-router-dom';
-import { getIngredients } from '../../services/actions/burger-ingredients'
-import { useDispatch, useSelector } from 'react-redux';
-import { GET_CURRENT_BURGER_INGREDIENT } from '../../services/actions/current-burger-ingredient'
+import { ICardTypes } from "../../utils/propsType";
+import { useDispatch, useSelector } from "../../services/typesOfStoreAndThunk";
+import { GET_CURRENT_BURGER_INGREDIENT } from "../../services/actions/current-burger-ingredient"
 
 const IngredientDetailsCard = () => {
     const dispatch = useDispatch();
     const { id } = useParams();
 
-    const { burgerIngredients, isLoading } = useSelector((store: any) => store.burgerIngredients);
-    const { currentBurgerIngredient } = useSelector((store: any) => store.currentBurgerIngredient);
-
-
+    const { burgerIngredients, isLoading } = useSelector(store => store.burgerIngredients);
+    const { currentBurgerIngredient } = useSelector(store => store.currentBurgerIngredient);
     const current = burgerIngredients.find((ingredient: ICardTypes) => ingredient._id === id)
 
-    React.useEffect(() => {
-        dispatch<any>(getIngredients())
-    }, [dispatch]);
+    console.log(current)
 
     React.useEffect(() => {
         if (current) {
