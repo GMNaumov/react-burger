@@ -1,7 +1,10 @@
 import { useEffect } from "react";
 import styles from "./feed-page.module.css";
 import { useDispatch, useSelector } from "../../services/typesOfStoreAndThunk";
-import { getAllOrdersConnect } from "../../services/actions/ws-get-all-orders";
+import {
+  getAllOrdersConnect,
+  closeAllOrders,
+} from "../../services/actions/ws-get-all-orders";
 import { ListOrders } from "../../components/orders-list/orders-list";
 
 const wsUrl = "wss://norma.nomoreparties.space/orders/all";
@@ -27,9 +30,9 @@ export const FeedPage = () => {
   useEffect(() => {
     dispatch(getAllOrdersConnect(wsUrl));
     return () => {
-      //   dispatch(closeAllOrders());
+      dispatch(closeAllOrders());
     };
-  }, [dispatch]);
+  }, []);
 
   return (
     <div>

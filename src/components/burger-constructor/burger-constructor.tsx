@@ -29,7 +29,7 @@ const BurgerConstructor = () => {
     ingridient: ICardTypes;
   }
 
-  const [collectedProps, dropTarget] = useDrop(() => ({
+  const [, dropTarget] = useDrop(() => ({
     accept: "ingridient",
     drop: ({ ingridient }: IIngridient) => {
       if (ingridient.type === "bun") {
