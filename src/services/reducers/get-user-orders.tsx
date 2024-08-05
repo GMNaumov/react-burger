@@ -5,8 +5,8 @@ import {
     REQUEST_WS_USER_ORDERS
 } from "../constants";
 
-import { IOrderTypes } from "../../utils/propsType";
-import { TGetUserOrdersActions } from "../actions/ws-get-user-orders"
+import {IOrderTypes} from "../../utils/propsType";
+import {TGetUserOrdersActions} from "../actions/ws-get-user-orders"
 
 interface IGetUserOrdersState {
     wsConnected: boolean,

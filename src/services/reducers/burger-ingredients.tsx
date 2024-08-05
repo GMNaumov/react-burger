@@ -3,8 +3,8 @@ import {
     SUCCESS_GET_BURGER_INGREDIENTS,
     ERROR_GET_BURGER_INGREDIENTS
 } from "../constants";
-import { ICardTypes } from "../../utils/propsType"
-import { TIngredientsActions } from "../actions/burger-ingredients"
+import {ICardTypes} from "../../utils/propsType"
+import {TIngredientsActions} from "../actions/burger-ingredients"
 
 interface IIngridientsState {
     isLoading: boolean
