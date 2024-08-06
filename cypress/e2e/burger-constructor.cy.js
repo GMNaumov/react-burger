@@ -24,7 +24,6 @@ describe("E2E_TEST_BURGER_CONSTRUCTOR", () => {
     })
 
     it("TEST_ADD_INGREDIENTS_IN_CONSTRUCTOR", () => {
-
         cy.get("div[class^=burger-constructor_cardsContainer]").as("dropContainer")
         cy.get("@bun").drag("@dropContainer")
         cy.get("@main").drag("@dropContainer")
@@ -32,23 +31,23 @@ describe("E2E_TEST_BURGER_CONSTRUCTOR", () => {
 
         cy.get("div[class^=constructor-element]").as("orderIngridients")
         cy.get("@orderIngridients").should("have.length", 4)
-        cy.get("div[class^=constructor-element]")
+        cy.get("@orderIngridients")
             .first()
             .contains("Ингредиент 1 (верх)")
 
-        cy.get("div[class^=constructor-element]")
+        cy.get("@orderIngridients")
             .last()
             .contains("Ингредиент 1 (низ)")
 
-        cy.get("div[class^=constructor-element]")
+        cy.get("@orderIngridients")
             .first()
             .contains("Ингредиент 1 (верх)")
 
-        cy.get("div[class^=constructor-element]")
+        cy.get("@orderIngridients")
             .eq(1)
             .contains("Ингредиент 6")
 
-        cy.get("div[class^=constructor-element]")
+        cy.get("@orderIngridients")
             .eq(2)
             .contains("Ингредиент 10")
 
