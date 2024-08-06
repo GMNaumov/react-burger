@@ -9,7 +9,7 @@ interface ICurrentIngridients {
     currentBurgerIngredient: null | ICardTypes;
 }
 
-const initialState: ICurrentIngridients = {
+export const initialState: ICurrentIngridients = {
     currentBurgerIngredient: null
 }
 

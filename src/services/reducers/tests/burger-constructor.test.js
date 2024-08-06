@@ -8,14 +8,10 @@ import {
 
 import {burgerConstructorReducer} from "../burger-constructor";
 
+import {initialState} from "../burger-constructor";
+
 
 describe("TEST_BURGER_CONSTRUCTOR_REDUCER", () => {
-    const initialState = {
-        bun: null,
-        currentBurgerIngredient: [],
-        totalPrice: 0,
-    }
-
     it("TEST_INIT_STATE", () => {
         expect(burgerConstructorReducer(undefined, {})).toEqual({
             bun: null,

@@ -17,7 +17,7 @@ interface IConsructorType {
     totalPrice: number;
 }
 
-const initialState: IConsructorType = {
+export const initialState: IConsructorType = {
     bun: null,
     currentBurgerIngredient: [],
     totalPrice: 0,

@@ -7,14 +7,9 @@ import {
 
 import {wsReducerGetAllOrders} from "../get-all-orders";
 
-describe("TEST_GET_ALL_ORDERS_REDUCER", () => {
-    const initialState = {
-        wsConnected: false,
-        orders: [],
-        total: 0,
-        totalToday: 0,
-    }
+import {initialState} from "../get-all-orders";
 
+describe("TEST_GET_ALL_ORDERS_REDUCER", () => {
     it("TEST_INIT_STATE", () => {
         expect(wsReducerGetAllOrders(undefined, {})).toEqual({
             ...initialState

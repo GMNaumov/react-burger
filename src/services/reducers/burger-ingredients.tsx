@@ -12,7 +12,7 @@ interface IIngridientsState {
     burgerIngredients: Array<ICardTypes>;
 }
 
-const initialState: IIngridientsState = {
+export const initialState: IIngridientsState = {
     isLoading: false,
     success: false,
     burgerIngredients: [],

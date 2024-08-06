@@ -4,14 +4,11 @@ import {
     ERROR_GET_CURRENT_ORDER
 } from "../../constants";
 
+import {initialState} from "../current-order";
+
 import {currentOrderReducer} from "../current-order";
 
 describe("TEST_CURRENT_ORDER_REDUCER", () => {
-    const initialState = {
-        isLoading: false,
-        order: null,
-    }
-
     it("TEST_INIT_STATE", () => {
         expect(currentOrderReducer(undefined, {})).toEqual({
             ...initialState,

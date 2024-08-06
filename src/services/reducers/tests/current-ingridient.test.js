@@ -5,6 +5,8 @@ import {
 
 import {currentIngridientReducer} from "../current-ingridient";
 
+import {initialState} from "../current-ingridient";
+
 
 describe("TEST_CURRENT_INGREDIENT_REDUCER", () => {
 
@@ -15,9 +17,6 @@ describe("TEST_CURRENT_INGREDIENT_REDUCER", () => {
     })
 
     it("TEST_GET_CURRENT_BURGER_INGREDIENT", () => {
-        const initialState = {
-            currentBurgerIngredient: null,
-        }
         const main = {type: "main"}
         const action = {type: GET_CURRENT_BURGER_INGREDIENT, current: main}
         expect(currentIngridientReducer(initialState, action)).toEqual({
@@ -26,9 +25,6 @@ describe("TEST_CURRENT_INGREDIENT_REDUCER", () => {
     })
 
     it("TEST_REMOVE_CURRENT_BURGER_INGREDIENT", () => {
-        const initialState = {
-            currentBurgerIngredient: "ingridient",
-        }
         const action = {type: REMOVE_CURRENT_BURGER_INGREDIENT}
         expect(currentIngridientReducer(initialState, action)).toEqual({
             currentBurgerIngredient: null,

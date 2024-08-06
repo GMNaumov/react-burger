@@ -6,13 +6,9 @@ import {
 
 import {ingridientsReducer} from "../burger-ingredients";
 
-describe("TEST_BURGER_INGREDIENTS_REDUCER", () => {
-    const initialState = {
-        isLoading: false,
-        success: false,
-        burgerIngredients: [],
-    }
+import {initialState} from "../burger-ingredients";
 
+describe("TEST_BURGER_INGREDIENTS_REDUCER", () => {
     it("TEST_INIT_STATE", () => {
         expect(ingridientsReducer(undefined, {})).toEqual({
             ...initialState

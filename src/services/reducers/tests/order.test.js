@@ -4,18 +4,11 @@ import {
     ERROR_ORDER
 } from "../../constants";
 
-import {orderReducer} from "../order"
+import {orderReducer} from "../order";
+
+import {initialState} from "../order";
 
 describe("TEST_ORDER_REDUCER", () => {
-    const initialState = {
-        isLoading: false,
-        name: null,
-        order: {
-            number: null,
-        },
-        success: false,
-    }
-
     it("TEST_INIT_STATE", () => {
         expect(orderReducer(undefined, {})).toEqual({
             ...initialState

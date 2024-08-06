@@ -13,19 +13,9 @@ import {
 
 import {routerReducer} from "../routers";
 
+import {initialState} from "../routers";
+
 describe("TEST_ROUTER_REDUCER", () => {
-
-    const initialState = {
-        user: {
-            email: "",
-            name: "",
-        },
-        isLogedIn: false,
-        isUserDataLoaded: false,
-        isLoading: false,
-        hasError: false,
-    }
-
     it("TEST_INIT_STATE", () => {
         expect(routerReducer(undefined, {})).toEqual({
             ...initialState
